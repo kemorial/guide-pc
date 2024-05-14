@@ -8,7 +8,11 @@ use App\Models\Bb;
 class BbsController extends Controller
 {
     public function index(){
-        // echo 'ремембер, ноу рашенс';
+        $context = ['bbs'=>Bb::get()];
+        return view('index',$context);
+    }
+
+    public function list(){
         $bbs = Bb::get();
         $s = "Объявления:\n\r";
         foreach ($bbs as $bb) {
@@ -19,11 +23,7 @@ class BbsController extends Controller
         return response($s)->header('Content-Type','text/plain');
     }
     public function details(Bb $bb){
-        $s = 'название: ';
-        $s.= $bb->name . "\n";
-        $s .='описание: ' . $bb->content . "\n";
-        $s .='цена: ' . $bb->price . " деревянных\n";
-
-        return response($s)->header('Content-Type','text/plain');
+        $context = ['bb'=>$bb];
+        return view('details',$context);
     }
 }
