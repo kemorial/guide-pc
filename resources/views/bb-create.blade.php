@@ -5,7 +5,7 @@
     @csrf
     <div class="mb-3">
         <label for="txtTitle" class="form-label">Товар</label>
-        <input name="title" id="txtTitle" class="form-control">
+        <input name="name" id="txtTitle" class="form-control">
     </div>
     <div class="mb-3">
         <label for="txtContent" class="form-label">Описание</label>

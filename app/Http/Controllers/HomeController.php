@@ -35,10 +35,11 @@ class HomeController extends Controller
 
     public function store(Request $request)
     {
+        $validated = $request->validate(self::BB_VALIDATOR);
         Auth::user()->bbs()->create([
-            'name' => $request->name,
-            'content' => $request->content,
-            'price' => $request->price,
+            'name' => $validated['name'],
+            'content' => $validated['content'],
+            'price' => $validated['price']
         ]);
         return redirect()->route('home');
     }
@@ -49,10 +50,11 @@ class HomeController extends Controller
 
     public function update(Request $request, Bb $bb)
     {
+        $validated = $request->validate(self::BB_VALIDATOR);
         $bb->fill([
-            'name' => $request->name,
-            'content' => $request->content,
-            'price' => $request->price
+            'name' => $validated['name'],
+            'content' => $validated['content'],
+            'price' => $validated['price']
         ]);
         $bb->save();
         return redirect()->route('home');
@@ -69,7 +71,7 @@ class HomeController extends Controller
         return redirect()->route('home');
     }
 
-    public const BB_CALIDATOR = [
+    public const BB_VALIDATOR = [
         'name'=>'required|max:50',
         'content'=>'required',
         'price'=>'required|numeric',

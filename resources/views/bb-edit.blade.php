@@ -6,15 +6,19 @@
     @method('PATCH')
     <div class="mb-3">
         <label for="txtTitle" class="form-label">Товар</label>
-        <input name="name" id="txtTitle" class="form-control" value="{{$bb->name}}">
+        <input name="name" id="txtTitle" class="form-control @error('title') is-invalid @enderror"
+            value="{{ old('name', $bb->name) }}">
+        @error('title')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
     </div>
     <div class="mb-3">
         <label for="txtContent" class="form-label">Описание</label>
-        <textarea name="content" id="txtContent" class="form-control" row="3">{{$bb->content}}</textarea>
+        <textarea name="content" id="txtContent" class="form-control" row="3">{{ old('name', $bb->content) }}</textarea>
     </div>
     <div class="mb-3">
         <label for="txtPrice" class="form-label">Цена</label>
-        <input name="price" id="txtPrice" class="form-control" value="{{$bb->price}}">
+        <input name="price" id="txtPrice" class="form-control" value="{{ old('name', $bb->price) }}">
     </div>
     <input type="submit" class="btn btn-primary" value="Сохранить">
 </form>
