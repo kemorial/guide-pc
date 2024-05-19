@@ -14,13 +14,17 @@
         <nav class="navbar navbar-light bg-light">
             <div class="container-fluid">
                 <a href="{{Route('index')}}" class="">Главная</a>
-                <a href="{{Route('register')}}" class="nav-item nav-link">Регистрация</a>
-                <a href="{{Route('login')}}" class="nav-item nav-link">Вход</a>
-                <a href="{{Route('home')}}" class="nav-item nav-link">Мои объявления</a>
-                <form action="{{Route('logout')}}" method="post" class="form-inline">
-                    @csrf
-                    <input type="submit" class="btn btn-danger" value="Выход">
-                </form>
+                @guest
+                    <a href="{{Route('register')}}" class="nav-item nav-link">Регистрация</a>
+                    <a href="{{Route('login')}}" class="nav-item nav-link">Вход</a>
+                @endguest
+                @auth
+                    <a href="{{Route('home')}}" class="nav-item nav-link">Мои объявления</a>
+                    <form action="{{Route('logout')}}" method="post" class="form-inline">
+                        @csrf
+                        <input type="submit" class="btn btn-danger" value="Выход">
+                    </form>
+                @endauth
             </div>
         </nav>
         <h1>Объявления</h1>
