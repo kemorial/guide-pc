@@ -6,19 +6,25 @@
     @method('PATCH')
     <div class="mb-3">
         <label for="txtTitle" class="form-label">Товар</label>
-        <input name="name" id="txtTitle" class="form-control @error('title') is-invalid @enderror"
+        <input name="name" id="txtTitle" class="form-control @error('name') is-invalid @enderror"
             value="{{ old('name', $bb->name) }}">
-        @error('title')
+        @error('name')
             <div class="invalid-feedback">{{ $message }}</div>
         @enderror
     </div>
     <div class="mb-3">
         <label for="txtContent" class="form-label">Описание</label>
-        <textarea name="content" id="txtContent" class="form-control" row="3">{{ old('name', $bb->content) }}</textarea>
+        <textarea name="content" id="txtContent" class="form-control @error('content') is-invalid @enderror" row="3">{{ old('content', $bb->content) }}</textarea>
+        @error('content')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
     </div>
     <div class="mb-3">
         <label for="txtPrice" class="form-label">Цена</label>
-        <input name="price" id="txtPrice" class="form-control" value="{{ old('name', $bb->price) }}">
+        <input name="price" id="txtPrice" class="form-control @error('price') is-invalid @enderror" value="{{ old('price', $bb->price) }}">
+        @error('price')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
     </div>
     <input type="submit" class="btn btn-primary" value="Сохранить">
 </form>
